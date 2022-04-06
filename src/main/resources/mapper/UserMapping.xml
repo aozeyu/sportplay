@@ -25,6 +25,14 @@
         </if>
     </select>
     <update id="updateState">
-        update easy_user set state = #{state} where  id = #{id}
+        update easy_user
+        set state = #{state}
+        where id = #{id}
     </update>
+    <insert id="addUser">
+        INSERT INTO easy_user (username, password, email, role, state) value (#{username},#{password},#{email},#{role},#{state})
+    </insert>
+    <delete id="deleteUser">
+        delete from easy_user where id = #{id}
+    </delete>
 </mapper>

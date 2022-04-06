@@ -5,6 +5,7 @@ import com.deyunjiaoyu.sportplay.bean.QueryInfo;
 import com.deyunjiaoyu.sportplay.bean.User;
 import com.deyunjiaoyu.sportplay.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +30,22 @@ public class UserController {
         String res_string = JSON.toJSONString(res);
         return res_string;
     }
+
     @RequestMapping("/userstate")
     public String updateUserState(@RequestParam("id") Integer id, @RequestParam("state") Boolean state) {
-       int i = userDao.updateState(id, state);
-       return  i > 0 ? "success" : "error";
+        int i = userDao.updateState(id, state);
+        return i > 0 ? "success" : "error";
+    }
+    @RequestMapping("/addUser")
+    public String addUser(@RequestBody User user) {
+        user.setRole("普通用户");
+        user.setState(false);
+        int i = userDao.addUser(user);
+        return i > 0 ? "success" : "error";
+    }
+    @RequestMapping("/deleteUser")
+    public String deleteUser(@RequestParam("id") Integer id) {
+        int i = userDao.deleteUser(id);
+        return i > 0 ? "success" : "error";
     }
 }
