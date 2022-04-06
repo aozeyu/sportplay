@@ -48,4 +48,9 @@ public class UserController {
         int i = userDao.deleteUser(id);
         return i > 0 ? "success" : "error";
     }
+    @RequestMapping("/modifyUser")
+    public String modifyUser(@RequestBody User user) {
+        int i = userDao.modifyUser(user);
+        return i > 0 ? "success" : "error";
+    }
 }

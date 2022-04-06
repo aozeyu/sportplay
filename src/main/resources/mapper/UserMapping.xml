@@ -35,4 +35,7 @@
     <delete id="deleteUser">
         delete from easy_user where id = #{id}
     </delete>
+    <update id="modifyUser">
+        update easy_user set state = #{state}, email = #{email} , password = #{password}, username = #{username}, role = #{role} where id = #{id};
+    </update>
 </mapper>
